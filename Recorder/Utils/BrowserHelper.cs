@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 using WebKit;
 
@@ -24,6 +25,11 @@ namespace Recorder.Utils
             Browser.Dock = DockStyle.Fill;
             BrowserContainer.Controls.Add(Browser);
             Browser.Navigate(Url);
+        }
+
+        public static string LocalToUrl(string path)
+        {
+            return HttpUtility.UrlPathEncode(string.Format("file:///{0}", path)).Replace("\\", "//");
         }
     }
 }

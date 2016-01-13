@@ -46,6 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\BrowserHelper.cs" />
+    <Compile Include="Utils\WinTool.cs" />
     <EmbeddedResource Include="FmMain.resx">
       <DependentUpon>FmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,7 +102,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Html\index.html" />
+    <Content Include="Html\edit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Html\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Html\list.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Lib\ApplePushService.dll" />
     <Content Include="Lib\AppleVersions.dll" />
     <Content Include="Lib\APSDaemon_main.dll" />
@@ -146,6 +156,7 @@
     <Content Include="Lib\YSCrashDump.dll" />
     <Content Include="Lib\YSUtilities.dll" />
     <Content Include="Lib\zlib1.dll" />
+    <None Include="Resources\iconfont-close.png" />
     <Content Include="问题集.txt" />
   </ItemGroup>
   <ItemGroup>
