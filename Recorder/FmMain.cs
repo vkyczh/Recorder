@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
 using DataModel.Entities;
 using DataModel.Enums;
+using Recorder.Business;
 using Recorder.Utils;
 using System;
 using System.Collections.Generic;
@@ -20,23 +21,35 @@ namespace Recorder
         public FmMain()
         {
             InitializeComponent();
-
-            InitWebBrowser(pEdit, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory+"html/edit.html"));
-            InitWebBrowser(pList, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/list.html"));
+            pList.MouseWheel += (obj, e) =>
+            {
+                int step = 50*(e.Delta>0? -1:1);
+                
+                _listBrowserHelper.Browser.GetScriptManager.EvaluateScript("document.body.scrollTop+="+step+";");
+            };
+            _editBrowserHelper = InitWebBrowser(pEdit, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/edit.html"));
+            _listBrowserHelper = InitWebBrowser(pList, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/list.html"));
         }
 
-        BrowserHelper _browserHelper;
+        BrowserHelper _editBrowserHelper;
+        BrowserHelper _listBrowserHelper;
+        RecordAdapter _recordAdapter = new RecordAdapter();
+
         private void Form1_Load(object sender, EventArgs e)
         {
             pList.Dock = DockStyle.Fill;
             pEdit.Dock = DockStyle.Fill;
             pEdit.BringToFront();
+
+            _editBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
+            _listBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
         }
 
-        private void InitWebBrowser(Control container,string url)
+        private BrowserHelper InitWebBrowser(Control container, string url)
         {
-            _browserHelper = new BrowserHelper(container,url);
-            _browserHelper.InitWebBrowser();
+            var browserHelper = new BrowserHelper(container, url);
+            browserHelper.InitWebBrowser();
+            return browserHelper;
         }
 
         private static void TestDbOperates()
@@ -88,12 +101,14 @@ namespace Recorder
         private void lbEdit_Click(object sender, EventArgs e)
         {
             pEdit.BringToFront();
-            
+
         }
 
         private void lbList_Click(object sender, EventArgs e)
         {
             pList.BringToFront();
+            pList.Focus();
+            _listBrowserHelper.Browser.Reload();
         }
     }
 }

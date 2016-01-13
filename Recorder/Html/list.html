@@ -5,34 +5,27 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
-        body{
+        /*body{
             overflow:hidden;
-        }
+        }*/
     </style>
+    <script type="text/javascript">
+        alert = window.external.Alert;
+        onerror = function (a, b, c) {
+            document.write(a+"\r\n"+b+"\r\n"+c);
+        }
+        window.onload = function () {
+            var list = JSON.parse(window.external.Read());
+            //document.write(list);
+            list.forEach(function (item) {
+                var p = document.createElement("p");
+                p.innerText = item.Title + " " + item.CreateDate;
+                document.body.appendChild(p);
+            });
+        }
+    </script>
 </head>
 <body>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
-    <p>列表</p>
+   
 </body>
 </html>

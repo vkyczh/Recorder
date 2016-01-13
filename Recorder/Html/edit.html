@@ -4,17 +4,57 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script>
+        Notice = window.external.Alert;
+        function save() {
+            var f = document.forms[0];
+           var r = window.external.Save(
+                f.Title.value,
+                f.Project.value,
+                f.Tag.value,
+                f.Description.value,
+                f.DealWith.value,
+                f.Status.value
+                );
+
+           if (r)
+               window.external.Alert("新增成功。");
+           else
+               window.external.Alert("操作失败。");
+        }
+    </script>
 </head>
 <body>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
-    <p>编辑页面</p>
+    <div>
+        <form>
+            <div class="input">
+                <label>标题</label>
+                <input type="text" name="Title" />
+            </div>
+            <div class="input">
+                <label>项目</label>
+                <input type="text" name="Project" />
+            </div>
+            <div class="input">
+                <label>标签</label>
+                <input type="text" name="Tag" />
+            </div>
+            <div class="input">
+                <label>描述</label>
+                <input type="text" name="Description" />
+            </div>
+            <div class="input">
+                <label>处理方式</label>
+                <input type="text" name="DealWith" />
+            </div>
+            <div class="input">
+                <label>状态</label>
+                <input type="text" name="Status" />
+            </div>
+            <div class="input">
+                <input type="button" value="保存" onclick="save();"/>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
