@@ -3,29 +3,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
-    <style>
-        /*body{
-            overflow:hidden;
-        }*/
-    </style>
-    <script type="text/javascript">
-        alert = window.external.Alert;
-        onerror = function (a, b, c) {
-            document.write(a+"\r\n"+b+"\r\n"+c);
-        }
-        window.onload = function () {
-            var list = JSON.parse(window.external.Read());
-            //document.write(list);
-            list.forEach(function (item) {
-                var p = document.createElement("p");
-                p.innerText = item.Title + " " + item.CreateDate;
-                document.body.appendChild(p);
-            });
-        }
-    </script>
+    <title>列表</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <script src="js/knock.js"></script>
+    <script src="js/list.js"></script>
+
 </head>
 <body>
-   
+    <div data-bind="foreach:list">
+        <div class="block" data-bind="event:{dblclick:$root.detail}">
+            <div data-bind="text:Title" class="title"></div>
+            <div data-bind="text:Project" class="project"></div>
+            <div data-bind="text:Description" class="description"></div>
+            <div data-bind="text: $root.formatDate(CreateDate)" class="createDate"></div>
+        </div>
+    </div>
 </body>
 </html>

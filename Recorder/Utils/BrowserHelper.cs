@@ -10,21 +10,20 @@ namespace Recorder.Utils
 {
     public class BrowserHelper
     {
-        public BrowserHelper(Control browserContainer, string url)
+        public BrowserHelper(string url)
         {
             Browser = new WebKitBrowser();
-            BrowserContainer = browserContainer;
             Url = url;
+            Browser.Navigate(Url);
         }
         public WebKitBrowser Browser { get; private set; }
         public Control BrowserContainer{get;private set;}
         public string Url { get; private set; }
 
-        public void InitWebBrowser()
+        public void InitWebBrowser(Control browserContainer)
         {
             Browser.Dock = DockStyle.Fill;
-            BrowserContainer.Controls.Add(Browser);
-            Browser.Navigate(Url);
+            browserContainer.Controls.Add(Browser);
         }
 
         public static string LocalToUrl(string path)

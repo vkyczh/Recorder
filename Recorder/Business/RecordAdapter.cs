@@ -28,7 +28,7 @@ namespace Recorder.Business
 
         public string Read()
         {
-            var list = _recordService.Query(null);
+            var list = _recordService.Query(null).OrderByDescending(p=>p.CreateDate);
             var result = JsonConvert.SerializeObject(list);
             return result;
         }

@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebKit;
@@ -21,38 +22,35 @@ namespace Recorder
         public FmMain()
         {
             InitializeComponent();
-            Top = 50;
-            Left = Screen.GetWorkingArea(this).Width-Width-50;
-            pList.MouseWheel += (obj, e) =>
-            {
-                int step = 50*(e.Delta>0? -1:1);
-                
-                _listBrowserHelper.Browser.GetScriptManager.EvaluateScript("document.body.scrollTop+="+step+";");
-            };
-            _editBrowserHelper = InitWebBrowser(pEdit, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/edit.html"));
-            _listBrowserHelper = InitWebBrowser(pList, BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/list.html"));
+            SetPosition();
         }
 
-        BrowserHelper _editBrowserHelper;
-        BrowserHelper _listBrowserHelper;
+        private void SetPosition()
+        {
+            Top = 50;
+            Left = Screen.GetWorkingArea(this).Width - Width - 50;
+        }
+
+
+        BrowserHelper _editBrowserHelper = new BrowserHelper(BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/edit.html"));
+        BrowserHelper _listBrowserHelper = new BrowserHelper(BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/list.html"));
         RecordAdapter _recordAdapter = new RecordAdapter();
 
         private void Form1_Load(object sender, EventArgs e)
         {
             pList.Dock = DockStyle.Fill;
             pEdit.Dock = DockStyle.Fill;
-            pEdit.BringToFront();
+            SetBrowser();
+        }
 
+        private void SetBrowser()
+        {
+            _editBrowserHelper.InitWebBrowser(pEdit);
+            _listBrowserHelper.InitWebBrowser(pList);
             _editBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
             _listBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
         }
 
-        private BrowserHelper InitWebBrowser(Control container, string url)
-        {
-            var browserHelper = new BrowserHelper(container, url);
-            browserHelper.InitWebBrowser();
-            return browserHelper;
-        }
 
         private static void TestDbOperates()
         {
@@ -109,9 +107,14 @@ namespace Recorder
         private void lbList_Click(object sender, EventArgs e)
         {
             pList.BringToFront();
-            pList.Focus();
+            _listBrowserHelper.Browser.Focus();
             _listBrowserHelper.Browser.Reload();
             pTool.BackgroundImage = global::Recorder.Properties.Resources.RightSelectedTab;
+        }
+
+        private void FmMain_Shown(object sender, EventArgs e)
+        {
+
         }
     }
 }

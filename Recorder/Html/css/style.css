@@ -1,0 +1,42 @@
+﻿body {
+}
+
+.block {
+    border-bottom: solid 1px #dbd6d6;
+    margin: 8px 0 0 0;
+    -webkit-user-select: none;
+    position: relative;
+    padding:0 0 25px 10px;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.project {
+    position: absolute;
+    right: 3px;
+    top: 0;
+    font-size: 14px;
+    color: #605555;
+}
+
+.description {
+    margin:3px 6px 0 6px;
+    padding: 1px 0 1px 0;
+    overflow: hidden;
+    text-wrap: normal;
+    font-size: 14px;
+    color: #000000;
+    height: 50px;
+    -webkit-user-select:none;
+}
+
+.createDate {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-size: 12px;
+    color:#808080;
+}

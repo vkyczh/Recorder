@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pTitle = new System.Windows.Forms.Panel();
+            this.lbClose = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pContainer = new System.Windows.Forms.Panel();
             this.pContent = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@
             this.pTool = new System.Windows.Forms.Panel();
             this.lbList = new System.Windows.Forms.Label();
             this.lbEdit = new System.Windows.Forms.Label();
-            this.lbClose = new System.Windows.Forms.Label();
             this.pTitle.SuspendLayout();
             this.pContainer.SuspendLayout();
             this.pContent.SuspendLayout();
@@ -57,6 +57,18 @@
             this.pTitle.Name = "pTitle";
             this.pTitle.Size = new System.Drawing.Size(325, 37);
             this.pTitle.TabIndex = 1;
+            // 
+            // lbClose
+            // 
+            this.lbClose.Image = global::Recorder.Properties.Resources.iconfont_close;
+            this.lbClose.Location = new System.Drawing.Point(281, 3);
+            this.lbClose.Margin = new System.Windows.Forms.Padding(5);
+            this.lbClose.Name = "lbClose";
+            this.lbClose.Size = new System.Drawing.Size(39, 32);
+            this.lbClose.TabIndex = 1;
+            this.lbClose.Click += new System.EventHandler(this.lbClose_Click);
+            this.lbClose.MouseEnter += new System.EventHandler(this.lbClose_MouseEnter);
+            this.lbClose.MouseLeave += new System.EventHandler(this.lbClose_MouseLeave);
             // 
             // lbTitle
             // 
@@ -175,18 +187,6 @@
             this.lbEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbEdit.Click += new System.EventHandler(this.lbEdit_Click);
             // 
-            // lbClose
-            // 
-            this.lbClose.Image = global::Recorder.Properties.Resources.iconfont_close;
-            this.lbClose.Location = new System.Drawing.Point(281, 3);
-            this.lbClose.Margin = new System.Windows.Forms.Padding(5);
-            this.lbClose.Name = "lbClose";
-            this.lbClose.Size = new System.Drawing.Size(39, 32);
-            this.lbClose.TabIndex = 1;
-            this.lbClose.Click += new System.EventHandler(this.lbClose_Click);
-            this.lbClose.MouseEnter += new System.EventHandler(this.lbClose_MouseEnter);
-            this.lbClose.MouseLeave += new System.EventHandler(this.lbClose_MouseLeave);
-            // 
             // FmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -199,6 +199,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.FmMain_Shown);
             this.pTitle.ResumeLayout(false);
             this.pContainer.ResumeLayout(false);
             this.pContent.ResumeLayout(false);
