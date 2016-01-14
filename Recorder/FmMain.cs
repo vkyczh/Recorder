@@ -21,6 +21,8 @@ namespace Recorder
         public FmMain()
         {
             InitializeComponent();
+            Top = 50;
+            Left = Screen.GetWorkingArea(this).Width-Width-50;
             pList.MouseWheel += (obj, e) =>
             {
                 int step = 50*(e.Delta>0? -1:1);
@@ -101,7 +103,7 @@ namespace Recorder
         private void lbEdit_Click(object sender, EventArgs e)
         {
             pEdit.BringToFront();
-
+            pTool.BackgroundImage = global::Recorder.Properties.Resources.LeftSelectedTab;
         }
 
         private void lbList_Click(object sender, EventArgs e)
@@ -109,6 +111,7 @@ namespace Recorder
             pList.BringToFront();
             pList.Focus();
             _listBrowserHelper.Browser.Reload();
+            pTool.BackgroundImage = global::Recorder.Properties.Resources.RightSelectedTab;
         }
     }
 }
