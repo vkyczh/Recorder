@@ -1,12 +1,16 @@
-﻿body {
+﻿html,body {
+    height:100%;
+    margin:0;
+    padding:0 0 0 0;
 }
 
 .block {
     border-bottom: solid 1px #dbd6d6;
-    margin: 8px 0 0 0;
+    margin: 0 0 0 10px;
     -webkit-user-select: none;
     position: relative;
-    padding:0 0 25px 10px;
+    padding: 10px 0 25px 5px;
+    box-sizing:border-box;
 }
 
 .title {
@@ -15,6 +19,7 @@
 }
 
 .project {
+    padding:10px;
     position: absolute;
     right: 3px;
     top: 0;
@@ -23,14 +28,14 @@
 }
 
 .description {
-    margin:3px 6px 0 6px;
+    margin: 3px 6px 0 6px;
     padding: 1px 0 1px 0;
     overflow: hidden;
     text-wrap: normal;
     font-size: 14px;
     color: #000000;
     height: 50px;
-    -webkit-user-select:none;
+    -webkit-user-select: none;
 }
 
 .createDate {
@@ -38,5 +43,56 @@
     bottom: 3px;
     right: 3px;
     font-size: 12px;
-    color:#808080;
+    color: #808080;
+}
+
+
+
+/*
+    编辑界面
+*/
+
+.input label {
+    width: 80px;
+    display: inline-block;
+}
+
+.input {
+    margin: 0 0 0 10px;
+    padding-top:10px;
+}
+
+    .input input[type=button] {
+        width: 80px;
+        height: 35px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: medium;
+        font-weight: bold;
+        align-self: center;
+        color: #3657A8;
+    }
+    .input select{
+        width: 80px;
+        height: 25px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: medium;
+        font-weight: bold;
+        align-self: center;
+        color: #3657A8;
+    }
+
+div[class=edit] {
+    height:100%;
+    position:relative;
+}
+
+.edit form{
+    height:100%;
+}
+div .btn{
+   position:absolute;
+   bottom:0;
+   padding:0 0 0 160px;
 }

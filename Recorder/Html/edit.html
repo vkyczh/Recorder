@@ -4,28 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <style>
-        .input label{
-            width:80px;
-            display:inline-block;
-        }
-
-        .input{
-            margin:10px 0 0 10px;
-        }
-
-        .input input[type=button]{
-            width:80px;
-            height:35px;
-            text-align:center;
-            vertical-align:middle;
-            font-size:medium;
-            font-weight:bold;
-            align-self:center;
-            color:#3657A8;
-            /*background-color:#0094ff;*/
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script>
         Notice = window.external.Alert;
         function save() {
@@ -47,7 +26,7 @@
     </script>
 </head>
 <body>
-    <div>
+    <div class="edit">
         <form>
             <div class="input">
                 <label>标题</label>
@@ -55,7 +34,7 @@
             </div>
             <div class="input">
                 <label>项目</label>
-                <input type="text" name="Project" />
+                <input type="text" name="Project" value="无"/>
             </div>
             <div class="input">
                 <label>标签</label>
@@ -71,9 +50,13 @@
             </div>
             <div class="input">
                 <label>状态</label>
-                <input type="text" name="Status" />
+                <!--<input type="text" name="Status" />-->
+                <select name="Status">
+                    <option value="0">待处理</option>
+                    <option value="1">已处理</option>
+                </select>
             </div>
-            <div class="input">
+            <div class="input btn">
                 <input type="button" value="保存" onclick="save();"/>
             </div>
         </form>

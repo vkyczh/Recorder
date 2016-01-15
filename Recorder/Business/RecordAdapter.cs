@@ -2,6 +2,7 @@
 using DataModel.Entities;
 using DataModel.Enums;
 using Newtonsoft.Json;
+using Recorder.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,12 @@ namespace Recorder.Business
         public void Alert(string msg)
         {
             MessageBox.Show(msg);
+        }
+
+        public void ShowDetail(string json)
+        {
+            var fmDetail = new FmDetail(json);
+            fmDetail.Show();
         }
     }
 }

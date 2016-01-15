@@ -19,7 +19,7 @@
                 return date.substr(0, 10);
             }
             me.detail = function (data, e) {
-                Notice(JSON.stringify(data));
+                window.external.ShowDetail(JSON.stringify(data));
             }
         }
 
