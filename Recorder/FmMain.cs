@@ -26,8 +26,8 @@ namespace Recorder
 
         private void SetPosition()
         {
-            Top = 50;
-            Left = Screen.GetWorkingArea(this).Width - Width - 50;
+            Top = 70;
+            Left = Screen.GetWorkingArea(this).Width - Width - 10;
         }
 
 

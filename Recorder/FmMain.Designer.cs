@@ -159,6 +159,7 @@
             // 
             this.lbList.BackColor = System.Drawing.Color.Transparent;
             this.lbList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbList.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(120)))), ((int)(((byte)(1)))));
@@ -175,6 +176,7 @@
             // 
             this.lbEdit.BackColor = System.Drawing.Color.Transparent;
             this.lbEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbEdit.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbEdit.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(120)))), ((int)(((byte)(1)))));
