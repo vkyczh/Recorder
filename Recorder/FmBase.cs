@@ -139,8 +139,17 @@ namespace Recorder
         private void CreateBrowser()
         {
             Browser = new BrowserHelper(_browserHelperParam).Browser;
+
+            Browser.DocumentCompleted += TitleHandler;
+            Browser.DocumentTitleChanged += TitleHandler;
             IsBrowserCreated = true;
             BrowserCreated();
+        }
+
+        private void TitleHandler(object sender,EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Browser.DocumentTitle))
+                lbTitle.Text = Browser.DocumentTitle;
         }
 
         #endregion <<< private

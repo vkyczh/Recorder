@@ -4,6 +4,7 @@
 
         me.bind= function(json)
         {
+            document.title = json.Title;
             ko.applyBindings(json);
         }
     }
