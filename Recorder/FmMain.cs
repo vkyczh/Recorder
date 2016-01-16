@@ -30,18 +30,29 @@ namespace Recorder
             Left = Screen.GetWorkingArea(this).Width - Width - 10;
         }
 
-
         BrowserHelper _editBrowserHelper;
         BrowserHelper _listBrowserHelper;
         RecordAdapter _recordAdapter = new RecordAdapter();
         Timer _timer;
+
+        public bool IsTopMost
+        {
+            get
+            {
+                return TopMost;
+            }
+            set
+            {
+                TopMost = value;
+                ucBtnNail.InnerBackgroundImage = TopMost ? Properties.Resources.nailed : Properties.Resources.nail;
+            }
+        }
 
         private void FmMain_Load(object sender, EventArgs e)
         {
             pList.Dock = DockStyle.Fill;
             pEdit.Dock = DockStyle.Fill;
             _timer.Start();
-            //SetBrowser();
         }
 
         private void InitTimer()
@@ -93,22 +104,6 @@ namespace Recorder
             WinTool.ReleaseCapture();
         }
 
-        private void lbClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-
-        private void lbClose_MouseEnter(object sender, EventArgs e)
-        {
-            lbClose.BackColor = Color.FromArgb(54, 87, 200);
-        }
-
-        private void lbClose_MouseLeave(object sender, EventArgs e)
-        {
-            lbClose.BackColor = Color.Transparent;
-        }
-
         private void lbEdit_Click(object sender, EventArgs e)
         {
             pEdit.BringToFront();
@@ -122,6 +117,17 @@ namespace Recorder
             _listBrowserHelper.Browser.Reload();
             pTool.BackgroundImage = global::Recorder.Properties.Resources.RightSelectedTab;
         }
+        
+        private void ucBtnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ucBtnNail_Click(object sender, EventArgs e)
+        {
+            IsTopMost = !IsTopMost;
+        }
+
 
     }
 }

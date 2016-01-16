@@ -54,6 +54,19 @@ namespace Recorder
             }
         }
 
+        public bool IsTopMost
+        {
+            get
+            {
+                return TopMost;
+            }
+            set
+            {
+                TopMost = value;
+                ucBtnNail.InnerBackgroundImage = TopMost?Properties.Resources.nailed:Properties.Resources.nail;
+            }
+        }
+
         protected bool IsBrowserCreated;
         protected WebKitBrowser _browser;
 
@@ -158,6 +171,8 @@ namespace Recorder
             ucBtnSize.InnerBackgroundImage =
                 WindowState == FormWindowState.Maximized ?
                 Properties.Resources.downResize : Properties.Resources.maxResize;
+
+            ucBtnSize.Tip = WindowState == FormWindowState.Maximized ? "向下还原" : "最大化";
         }
 
         private void ucBtnClose_Click(object sender, EventArgs e)
@@ -169,6 +184,13 @@ namespace Recorder
         {
             WindowState = FormWindowState.Minimized;
         }
+
+        private void ucBtnNail_Click(object sender, EventArgs e)
+        {
+            IsTopMost = !IsTopMost;
+        }
+
+        
 
     }
 }

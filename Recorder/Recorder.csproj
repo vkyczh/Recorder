@@ -170,6 +170,8 @@
     <Content Include="Resources\downResize.png" />
     <Content Include="Resources\maxResize.png" />
     <Content Include="Resources\minmize.png" />
+    <Content Include="Resources\nail.png" />
+    <Content Include="Resources\nailed.png" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\record.png" />
     <Content Include="RightSelectedTab.png" />
