@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Recorder.Utils
 {
@@ -15,5 +16,9 @@ namespace Recorder.Utils
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_MOVE = 0xF010;
         public const int HTCAPTION = 0x0002;
+        public static bool Capture(IntPtr handle)
+        {
+            return SendMessage(handle, WM_SYSCOMMAND, HTCAPTION + SC_MOVE, 0);
+        }
     }
 }

@@ -10,27 +10,36 @@ using System.Windows.Forms;
 
 namespace Recorder.Views
 {
-    public partial class FmDetail : Form
+    public partial class FmDetail : FmBase
     {
-
+        /// <summary>
+        /// 请使用传递json字符串参数的构造函数
+        /// </summary>
         public FmDetail()
         {
             InitializeComponent();
         }
+
         public FmDetail(string json)
+            : base()
         {
             InitializeComponent();
             _json = json;
+            Init("html/detail.html");
         }
 
-        string _json = "{}";
-        BrowserHelper _editBrowserHelper = new BrowserHelper(BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/detail.html"));
-        private void FmDetail_Load(object sender, EventArgs e)
+        string _json;
+
+        protected override void BrowserCreated()
         {
-            _editBrowserHelper.InitWebBrowser(this);
-            _editBrowserHelper.Browser.DocumentCompleted+= (o, be) =>
+            base.BrowserCreated();
+            BindJson();
+        }
+        private void BindJson()
+        {
+            Browser.DocumentCompleted += (o, be) =>
             {
-                _editBrowserHelper.Browser.GetScriptManager.EvaluateScript(string.Format("detailPage.bind({0});",_json));
+                Browser.GetScriptManager.EvaluateScript(string.Format("detailPage.bind({0});", _json));
             };
         }
 

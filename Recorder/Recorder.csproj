@@ -71,6 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\RecordAdapter.cs" />
+    <Compile Include="FmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmBase.Designer.cs">
+      <DependentUpon>FmBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="FmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\BrowserHelper.cs" />
+    <Compile Include="Utils\BrowserHelperParam.cs" />
     <Compile Include="Utils\WinTool.cs" />
     <Compile Include="Views\FmDetail.cs">
       <SubType>Form</SubType>
@@ -87,6 +94,9 @@
     <Compile Include="Views\FmDetail.Designer.cs">
       <DependentUpon>FmDetail.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FmBase.resx">
+      <DependentUpon>FmBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FmMain.resx">
       <DependentUpon>FmMain.cs</DependentUpon>
     </EmbeddedResource>

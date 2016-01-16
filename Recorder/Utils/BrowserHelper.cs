@@ -10,25 +10,30 @@ namespace Recorder.Utils
 {
     public class BrowserHelper
     {
-        public BrowserHelper(string url)
+        public BrowserHelper(string path, Control browserContainer, object scriptObject,bool isUrl = false)
         {
             Browser = new WebKitBrowser();
-            Url = url;
-            Browser.Navigate(Url);
-        }
-        public WebKitBrowser Browser { get; private set; }
-        public Control BrowserContainer{get;private set;}
-        public string Url { get; private set; }
-
-        public void InitWebBrowser(Control browserContainer)
-        {
             Browser.Dock = DockStyle.Fill;
             browserContainer.Controls.Add(Browser);
+            Browser.GetScriptManager.ScriptObject = scriptObject;//必须在Add到父控件后GetScriptManager才不为空
+            Browser.Navigate(isUrl ? path : LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + path));
         }
 
-        public static string LocalToUrl(string path)
+        public BrowserHelper(BrowserHelperParam p)
+        {
+            Browser = new WebKitBrowser();
+            Browser.Dock = DockStyle.Fill;
+            p.Container.Controls.Add(Browser);
+            Browser.GetScriptManager.ScriptObject = p.ScriptObject;//必须在Add到父控件后GetScriptManager才不为空
+            Browser.Navigate(p.GetUrl());
+        }
+
+        public WebKitBrowser Browser { get; private set; }
+
+        private static string LocalToUrl(string path)
         {
             return HttpUtility.UrlPathEncode(string.Format("file:///{0}", path)).Replace("\\", "//");
         }
+
     }
 }

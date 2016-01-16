@@ -198,8 +198,7 @@
             this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.FmMain_Shown);
+            this.Load += new System.EventHandler(this.FmMain_Load);
             this.pTitle.ResumeLayout(false);
             this.pContainer.ResumeLayout(false);
             this.pContent.ResumeLayout(false);

@@ -10,8 +10,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebKit;
 
@@ -23,6 +21,7 @@ namespace Recorder
         {
             InitializeComponent();
             SetPosition();
+            InitTimer();
         }
 
         private void SetPosition()
@@ -32,23 +31,35 @@ namespace Recorder
         }
 
 
-        BrowserHelper _editBrowserHelper = new BrowserHelper(BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/edit.html"));
-        BrowserHelper _listBrowserHelper = new BrowserHelper(BrowserHelper.LocalToUrl(AppDomain.CurrentDomain.BaseDirectory + "html/list.html"));
+        BrowserHelper _editBrowserHelper;
+        BrowserHelper _listBrowserHelper;
         RecordAdapter _recordAdapter = new RecordAdapter();
+        Timer _timer;
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FmMain_Load(object sender, EventArgs e)
         {
             pList.Dock = DockStyle.Fill;
             pEdit.Dock = DockStyle.Fill;
-            SetBrowser();
+            _timer.Start();
+            //SetBrowser();
+        }
+
+        private void InitTimer()
+        {
+            _timer = new Timer();
+            _timer.Interval = 1;
+            _timer.Tick += (o, e) =>
+            {
+                SetBrowser();
+                _timer.Stop();
+                _timer.Dispose();
+            };
         }
 
         private void SetBrowser()
         {
-            _editBrowserHelper.InitWebBrowser(pEdit);
-            _listBrowserHelper.InitWebBrowser(pList);
-            _editBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
-            _listBrowserHelper.Browser.GetScriptManager.ScriptObject = _recordAdapter;
+            _editBrowserHelper = new BrowserHelper("html/edit.html", pEdit, _recordAdapter);
+            _listBrowserHelper = new BrowserHelper("html/list.html", pList, _recordAdapter);
         }
 
 
@@ -74,7 +85,7 @@ namespace Recorder
         private void lbTitle_MouseDown(object sender, MouseEventArgs e)
         {
             WinTool.ReleaseCapture();
-            WinTool.SendMessage(Handle, WinTool.WM_SYSCOMMAND, WinTool.HTCAPTION + WinTool.SC_MOVE, 0);
+            WinTool.Capture(Handle);
         }
 
         private void lbTitle_MouseUp(object sender, MouseEventArgs e)
@@ -112,9 +123,5 @@ namespace Recorder
             pTool.BackgroundImage = global::Recorder.Properties.Resources.RightSelectedTab;
         }
 
-        private void FmMain_Shown(object sender, EventArgs e)
-        {
-
-        }
     }
 }
