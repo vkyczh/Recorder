@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmMain));
             this.pTitle = new System.Windows.Forms.Panel();
             this.lbClose = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.pTool = new System.Windows.Forms.Panel();
             this.lbList = new System.Windows.Forms.Label();
             this.lbEdit = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pTitle.SuspendLayout();
             this.pContainer.SuspendLayout();
             this.pContent.SuspendLayout();
@@ -50,6 +52,7 @@
             // pTitle
             // 
             this.pTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(87)))), ((int)(((byte)(168)))));
+            this.pTitle.Controls.Add(this.panel1);
             this.pTitle.Controls.Add(this.lbClose);
             this.pTitle.Controls.Add(this.lbTitle);
             this.pTitle.Dock = System.Windows.Forms.DockStyle.Top;
@@ -189,6 +192,15 @@
             this.lbEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbEdit.Click += new System.EventHandler(this.lbEdit_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Recorder.Properties.Resources.record;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(8, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 25);
+            this.panel1.TabIndex = 8;
+            // 
             // FmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -197,6 +209,7 @@
             this.Controls.Add(this.pContainer);
             this.Controls.Add(this.pTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
@@ -224,6 +237,7 @@
         private System.Windows.Forms.Panel pEdit;
         private System.Windows.Forms.Panel pPage;
         private System.Windows.Forms.Panel pRoot;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

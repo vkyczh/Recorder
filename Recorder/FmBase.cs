@@ -38,16 +38,17 @@ namespace Recorder
         /// <param name="path"></param>
         public virtual void Init(string path)
         {
-             Init(new BrowserHelperParam(path));
+            Init(new BrowserHelperParam(path));
         }
 
-        public string Title{
+        public string Title
+        {
             get
             {
                 return lbTitle.Text;
             }
 
-            set 
+            set
             {
                 lbTitle.Text = value;
             }
@@ -90,16 +91,6 @@ namespace Recorder
         #endregion <<< protected
 
         #region >>> control event
-
-        private void lbClose_MouseEnter(object sender, EventArgs e)
-        {
-            lbClose.BackColor = Color.FromArgb(54, 87, 200);
-        }
-
-        private void lbClose_MouseLeave(object sender, EventArgs e)
-        {
-            lbClose.BackColor = Color.Transparent;
-        }
 
         private void lbClose_Click(object sender, EventArgs e)
         {
@@ -146,12 +137,38 @@ namespace Recorder
             BrowserCreated();
         }
 
-        private void TitleHandler(object sender,EventArgs e)
+        protected virtual void TitleHandler(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(Browser.DocumentTitle))
                 lbTitle.Text = Browser.DocumentTitle;
         }
 
         #endregion <<< private
+
+        private void ucBtnSize_Click(object sender, EventArgs e)
+        {
+            WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
+        }
+
+        private void FmBase_SizeChanged(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == WindowState)
+                return;
+
+            ucBtnSize.InnerBackgroundImage =
+                WindowState == FormWindowState.Maximized ?
+                Properties.Resources.downResize : Properties.Resources.maxResize;
+        }
+
+        private void ucBtnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ucBtnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
     }
 }
