@@ -38,8 +38,8 @@
             this.pContainer = new System.Windows.Forms.Panel();
             this.pBorderBottom = new System.Windows.Forms.Panel();
             this.pBorderRight = new System.Windows.Forms.Panel();
-            this.pBorderLeft = new System.Windows.Forms.Panel();
             this.pBorderRightBottom = new System.Windows.Forms.Panel();
+            this.pBorderLeft = new System.Windows.Forms.Panel();
             this.pBorderLeftDottom = new System.Windows.Forms.Panel();
             this.ucBtnNail = new Recorder.UCButton();
             this.ucBtnMinimize = new Recorder.UCButton();
@@ -123,7 +123,6 @@
             // 
             // lbTitle
             // 
-            this.lbTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTitle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTitle.ForeColor = System.Drawing.Color.Transparent;
@@ -138,7 +137,6 @@
             // 
             // pContainer
             // 
-            this.pContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pContainer.Controls.Add(this.pBorderBottom);
             this.pContainer.Controls.Add(this.pBorderRight);
             this.pContainer.Controls.Add(this.pBorderLeft);
@@ -154,10 +152,10 @@
             this.pBorderBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(87)))), ((int)(((byte)(168)))));
             this.pBorderBottom.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.pBorderBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pBorderBottom.Location = new System.Drawing.Point(3, 368);
+            this.pBorderBottom.Location = new System.Drawing.Point(3, 370);
             this.pBorderBottom.Margin = new System.Windows.Forms.Padding(0);
             this.pBorderBottom.Name = "pBorderBottom";
-            this.pBorderBottom.Size = new System.Drawing.Size(508, 3);
+            this.pBorderBottom.Size = new System.Drawing.Size(510, 3);
             this.pBorderBottom.TabIndex = 2;
             this.pBorderBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBorderBottom_MouseDown);
             this.pBorderBottom.MouseLeave += new System.EventHandler(this.ReleaseResizeStatusHandle);
@@ -170,15 +168,28 @@
             this.pBorderRight.Controls.Add(this.pBorderRightBottom);
             this.pBorderRight.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pBorderRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pBorderRight.Location = new System.Drawing.Point(511, 0);
+            this.pBorderRight.Location = new System.Drawing.Point(513, 0);
             this.pBorderRight.Margin = new System.Windows.Forms.Padding(0);
             this.pBorderRight.Name = "pBorderRight";
-            this.pBorderRight.Size = new System.Drawing.Size(3, 371);
+            this.pBorderRight.Size = new System.Drawing.Size(3, 373);
             this.pBorderRight.TabIndex = 1;
             this.pBorderRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBorderRight_MouseDown);
             this.pBorderRight.MouseLeave += new System.EventHandler(this.ReleaseResizeStatusHandle);
             this.pBorderRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pResize_MouseMove);
             this.pBorderRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ReleaseResizeStatusHandle);
+            // 
+            // pBorderRightBottom
+            // 
+            this.pBorderRightBottom.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.pBorderRightBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pBorderRightBottom.Location = new System.Drawing.Point(0, 341);
+            this.pBorderRightBottom.Name = "pBorderRightBottom";
+            this.pBorderRightBottom.Size = new System.Drawing.Size(3, 32);
+            this.pBorderRightBottom.TabIndex = 3;
+            this.pBorderRightBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBorderRightBottom_MouseDown);
+            this.pBorderRightBottom.MouseLeave += new System.EventHandler(this.ReleaseResizeStatusHandle);
+            this.pBorderRightBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pResize_MouseMove);
+            this.pBorderRightBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ReleaseResizeStatusHandle);
             // 
             // pBorderLeft
             // 
@@ -189,31 +200,18 @@
             this.pBorderLeft.Location = new System.Drawing.Point(0, 0);
             this.pBorderLeft.Margin = new System.Windows.Forms.Padding(0);
             this.pBorderLeft.Name = "pBorderLeft";
-            this.pBorderLeft.Size = new System.Drawing.Size(3, 371);
+            this.pBorderLeft.Size = new System.Drawing.Size(3, 373);
             this.pBorderLeft.TabIndex = 0;
             this.pBorderLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBorderLeft_MouseDown);
             this.pBorderLeft.MouseLeave += new System.EventHandler(this.ReleaseResizeStatusHandle);
             this.pBorderLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pResize_MouseMove);
             this.pBorderLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ReleaseResizeStatusHandle);
             // 
-            // pBorderRightBottom
-            // 
-            this.pBorderRightBottom.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pBorderRightBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pBorderRightBottom.Location = new System.Drawing.Point(0, 339);
-            this.pBorderRightBottom.Name = "pBorderRightBottom";
-            this.pBorderRightBottom.Size = new System.Drawing.Size(3, 32);
-            this.pBorderRightBottom.TabIndex = 3;
-            this.pBorderRightBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBorderRightBottom_MouseDown);
-            this.pBorderRightBottom.MouseLeave += new System.EventHandler(this.ReleaseResizeStatusHandle);
-            this.pBorderRightBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pResize_MouseMove);
-            this.pBorderRightBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ReleaseResizeStatusHandle);
-            // 
             // pBorderLeftDottom
             // 
             this.pBorderLeftDottom.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.pBorderLeftDottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pBorderLeftDottom.Location = new System.Drawing.Point(0, 339);
+            this.pBorderLeftDottom.Location = new System.Drawing.Point(0, 341);
             this.pBorderLeftDottom.Margin = new System.Windows.Forms.Padding(0);
             this.pBorderLeftDottom.Name = "pBorderLeftDottom";
             this.pBorderLeftDottom.Size = new System.Drawing.Size(3, 32);
@@ -310,7 +308,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pTitltle;
-        private System.Windows.Forms.Panel pContainer;
         private System.Windows.Forms.Label lbTitle;
         private UCButton ucBtnClose;
         private UCButton ucBtnSize;
@@ -325,5 +322,6 @@
         private System.Windows.Forms.Panel pTitleRight;
         private System.Windows.Forms.Panel pBorderRightBottom;
         private System.Windows.Forms.Panel pBorderLeftDottom;
+        protected System.Windows.Forms.Panel pContainer;
     }
 }

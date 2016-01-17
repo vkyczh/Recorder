@@ -92,7 +92,6 @@ namespace Recorder
         /// </summary>
         Timer _timer;
         BrowserHelperParam _browserHelperParam;
-        bool _pLeftMouseDown = false;
         ResizeController _resizeController;
 
         #region >>> protected
@@ -105,6 +104,7 @@ namespace Recorder
 
         }
         #endregion <<< protected
+
 
         #region >>> control event
 
@@ -248,10 +248,6 @@ namespace Recorder
         {
             _resizeController.Set(EMouseDownDownType.BorderLeftBottom);
         }
-
-     
-
-        
 
     }
 }

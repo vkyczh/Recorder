@@ -23,8 +23,11 @@ namespace Recorder.Utils
         {
             Browser = new WebKitBrowser();
             Browser.Dock = DockStyle.Fill;
+            Browser.Load += (o, e) =>
+            {
+                Browser.GetScriptManager.ScriptObject = p.ScriptObject;//必须在Add到父控件后GetScriptManager才不为空
+            };
             p.Container.Controls.Add(Browser);
-            Browser.GetScriptManager.ScriptObject = p.ScriptObject;//必须在Add到父控件后GetScriptManager才不为空
             Browser.Navigate(p.GetUrl());
         }
 
