@@ -34,6 +34,12 @@ namespace Recorder.Business
             return result;
         }
 
+        public string GetRecordById(string id)
+        {
+            var record = _recordService.Get(new Guid(id));
+            return JsonConvert.SerializeObject(record);
+        }
+
         public void Alert(string msg)
         {
             MessageBox.Show(msg);

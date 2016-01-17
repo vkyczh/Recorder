@@ -71,27 +71,20 @@ namespace Recorder
         {
             _editBrowserHelper = new BrowserHelper("html/edit.html", pEdit, _recordAdapter);
             _listBrowserHelper = new BrowserHelper("html/list.html", pList, _recordAdapter);
+            _listBrowserHelper.Browser.NewWindowCreated += Browser_NewWindowCreated;
         }
 
-
-        private static void TestDbOperates()
+        private void Browser_NewWindowCreated(object sender, NewWindowCreatedEventArgs e)
         {
-            var service = new RecordService();
-            var record = service.Add(new Record
-            {
-                Title = "title",
-                Tag = "tag",
-                Project = "prject",
-                DealWith = "dealwith",
-                Description = "des",
-                Status = RecordStatus.Pending
-            });
-            record.Status = RecordStatus.InHand;
-            record.DealWith = "trying to solve this problem ";
-            service.Update(record);
-            var updatedRecord = service.Get(record.Id);
-            var list = service.Query(null);
+            FmTabBase.Default.AddTab(e.WebKitBrowser);
+            if (!FmTabBase.Default.Visible)
+                FmTabBase.Default.Show();
         }
+
+    
+        
+
+
 
         private void lbTitle_MouseDown(object sender, MouseEventArgs e)
         {

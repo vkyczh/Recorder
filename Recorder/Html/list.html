@@ -10,13 +10,15 @@
 
 </head>
 <body>
+    <a href="http://www.baidu.com" target="_blank">baidu</a>
     <div data-bind="foreach:list">
-        <div class="block" data-bind="event:{dblclick:$root.detail}">
-            <div data-bind="text:Title" class="title"></div>
+        <a class="block" data-bind="attr:{href:'detail.html?id='+Id}" target="_blank">
+            <!--<a class="block" data-bind="event:{dblclick:$root.detail}">-->
+            <div data-bind="text:Title+'haha'" class="title"></div>
             <div data-bind="text:Project" class="project"></div>
             <div data-bind="text:Description" class="description"></div>
             <div data-bind="text: $root.formatDate(CreateDate)" class="createDate"></div>
-        </div>
+        </a>
     </div>
 </body>
 </html>

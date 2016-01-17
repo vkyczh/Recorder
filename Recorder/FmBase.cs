@@ -13,6 +13,7 @@ namespace Recorder
 {
     public partial class FmBase : Form
     {
+        public Action<string> TitleChangedHandler;
 
         public FmBase()
         {
@@ -42,7 +43,7 @@ namespace Recorder
             Init(new BrowserHelperParam(path));
         }
 
-        public string Title
+        public virtual string Title
         {
             get
             {
@@ -52,6 +53,8 @@ namespace Recorder
             set
             {
                 lbTitle.Text = value;
+                if (TitleChangedHandler != null)
+                    TitleChangedHandler(value);
             }
         }
 
@@ -106,16 +109,11 @@ namespace Recorder
         #endregion <<< protected
 
 
-        #region >>> control event
-
-        private void lbClose_Click(object sender, EventArgs e)
+        #region >>> private
+        protected virtual void CloseClickedHandler()
         {
             Close();
         }
-        #endregion <<< control event
-
-
-        #region >>> private
         private void InitTitle()
         {
             lbTitle.MouseDown += (o, e) =>
@@ -161,6 +159,9 @@ namespace Recorder
 
         #endregion <<< private
 
+
+        #region >>> control event
+
         private void ucBtnSize_Click(object sender, EventArgs e)
         {
             WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
@@ -180,7 +181,7 @@ namespace Recorder
 
         private void ucBtnClose_Click(object sender, EventArgs e)
         {
-            Close();
+            CloseClickedHandler();
         }
 
         private void ucBtnMinimize_Click(object sender, EventArgs e)
@@ -249,5 +250,6 @@ namespace Recorder
             _resizeController.Set(EMouseDownDownType.BorderLeftBottom);
         }
 
+        #endregion <<< control event
     }
 }

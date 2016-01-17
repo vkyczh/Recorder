@@ -13,6 +13,7 @@ namespace Recorder.UserControllers
 {
     public partial class UCTabContainer : UserControl
     {
+        public Action OnLastTabClosed;
         public UCTabContainer()
         {
             InitializeComponent();
@@ -54,8 +55,18 @@ namespace Recorder.UserControllers
             pTabPageContainer.Controls.Add(tabInfo.TabPage);
             TabInfoList.Add(tabInfo);
             SelectedTabInfo = tabInfo;
+            tabInfo.OnDisposed += () => {
+                if (TabInfoList.Count == 0 && OnLastTabClosed != null)
+                    OnLastTabClosed();
+            };
         }
 
+        /// <summary>
+        /// 从集合和界面中移除
+        /// 注意：如果WebBrowser不再使用，不应直接调用此操作。应该调用TabInfo的RemoveAndDispose方法
+        /// </summary>
+        /// <param name="tabInfo"></param>
+        /// <returns></returns>
         public TabInfo Remove(TabInfo tabInfo)
         {
             TabInfoList.Remove(tabInfo);
@@ -72,8 +83,17 @@ namespace Recorder.UserControllers
                     SelectedTabInfo = TabInfoList.First();
                 }
             }
-            RefreshTabButtonContainer();
+            RefreshTabButtonContainer();         
             return tabInfo;
+        }
+
+        public void RemoveAndDisposeAll()
+        {
+            while (TabInfoList.Count > 0)
+            {
+                var t = TabInfoList[0];
+                t.RemoveAndDispose();
+            }
         }
 
         private void RefreshTabButtonContainer()

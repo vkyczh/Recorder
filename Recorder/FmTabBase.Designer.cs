@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.pToolBar = new System.Windows.Forms.Panel();
-            this.ucButton1 = new Recorder.UCButton();
             this.pTabBaseContainer = new System.Windows.Forms.Panel();
             this.ucTabContainer1 = new Recorder.UserControllers.UCTabContainer();
             this.pContainer.SuspendLayout();
-            this.pToolBar.SuspendLayout();
             this.pTabBaseContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,34 +39,19 @@
             // 
             this.pContainer.Controls.Add(this.pTabBaseContainer);
             this.pContainer.Controls.Add(this.pToolBar);
+            this.pContainer.Size = new System.Drawing.Size(851, 440);
             this.pContainer.Controls.SetChildIndex(this.pToolBar, 0);
             this.pContainer.Controls.SetChildIndex(this.pTabBaseContainer, 0);
             // 
             // pToolBar
             // 
             this.pToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(87)))), ((int)(((byte)(168)))));
-            this.pToolBar.Controls.Add(this.ucButton1);
             this.pToolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pToolBar.Location = new System.Drawing.Point(3, 0);
             this.pToolBar.Margin = new System.Windows.Forms.Padding(0);
             this.pToolBar.Name = "pToolBar";
-            this.pToolBar.Size = new System.Drawing.Size(510, 35);
+            this.pToolBar.Size = new System.Drawing.Size(845, 35);
             this.pToolBar.TabIndex = 3;
-            // 
-            // ucButton1
-            // 
-            this.ucButton1.BackColor = System.Drawing.Color.Transparent;
-            this.ucButton1.InnerBackgroundImage = null;
-            this.ucButton1.Location = new System.Drawing.Point(129, 11);
-            this.ucButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.ucButton1.Name = "ucButton1";
-            this.ucButton1.Padding = new System.Windows.Forms.Padding(1);
-            this.ucButton1.Size = new System.Drawing.Size(87, 21);
-            this.ucButton1.TabIndex = 0;
-            this.ucButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ucButton1.Tip = null;
-            this.ucButton1.UCText = "UCButton";
-            this.ucButton1.Click += new System.EventHandler(this.ucButton1_Click);
             // 
             // pTabBaseContainer
             // 
@@ -77,7 +60,7 @@
             this.pTabBaseContainer.Location = new System.Drawing.Point(3, 35);
             this.pTabBaseContainer.Margin = new System.Windows.Forms.Padding(0);
             this.pTabBaseContainer.Name = "pTabBaseContainer";
-            this.pTabBaseContainer.Size = new System.Drawing.Size(510, 335);
+            this.pTabBaseContainer.Size = new System.Drawing.Size(845, 402);
             this.pTabBaseContainer.TabIndex = 4;
             // 
             // ucTabContainer1
@@ -86,19 +69,18 @@
             this.ucTabContainer1.Location = new System.Drawing.Point(0, 0);
             this.ucTabContainer1.Name = "ucTabContainer1";
             this.ucTabContainer1.SelectedTabInfo = null;
-            this.ucTabContainer1.Size = new System.Drawing.Size(510, 335);
+            this.ucTabContainer1.Size = new System.Drawing.Size(845, 402);
             this.ucTabContainer1.TabIndex = 0;
             // 
             // FmTabBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 405);
+            this.ClientSize = new System.Drawing.Size(851, 472);
             this.Name = "FmTabBase";
             this.Text = "FmTabBase";
             this.Load += new System.EventHandler(this.FmTabBase_Load);
             this.pContainer.ResumeLayout(false);
-            this.pToolBar.ResumeLayout(false);
             this.pTabBaseContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -109,6 +91,5 @@
         private System.Windows.Forms.Panel pToolBar;
         private System.Windows.Forms.Panel pTabBaseContainer;
         private UserControllers.UCTabContainer ucTabContainer1;
-        private UCButton ucButton1;
     }
 }

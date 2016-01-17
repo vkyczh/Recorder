@@ -10,6 +10,7 @@ namespace Recorder.Utils
 {
     public class TabInfo
     {
+        public Action OnDisposed;
         public TabInfo(UCTabContainer ucTabContainer)
         {
             _ucTabContainer = ucTabContainer;
@@ -54,6 +55,8 @@ namespace Recorder.Utils
         {
             Remove();
             DisposeWebKitBrowser();
+            if (OnDisposed != null)
+                OnDisposed();
         }
 
         public void DisposeWebKitBrowser()
