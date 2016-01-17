@@ -18,7 +18,7 @@ namespace Recorder.UserControllers
         {
             InitializeComponent();
         }
-
+        public int Count { get { return TabInfoList.Count; } }
         IList<TabInfo> TabInfoList = new List<TabInfo>();
 
         TabInfo _preSelectedTabInfo;
@@ -40,7 +40,7 @@ namespace Recorder.UserControllers
 
                 if (_preSelectedTabInfo != null)
                     _preSelectedTabInfo.DisSelect();
-                
+
                 if (_selectedTabInfo != null)
                     _selectedTabInfo.Select();
             }
@@ -56,8 +56,9 @@ namespace Recorder.UserControllers
             pTabPageContainer.Controls.Add(tabInfo.TabPage);
             TabInfoList.Add(tabInfo);
             SelectedTabInfo = tabInfo;
-            tabInfo.OnDisposed += () => {
-               
+            tabInfo.OnDisposed += () =>
+            {
+
             };
         }
 

@@ -23,6 +23,7 @@ namespace Recorder
         }
 
         public static FmTabBase Default = new FmTabBase();
+        public static List<FmTabBase> FmTabBaseList = new List<FmTabBase>();
 
         static FmTabBase()
         {
@@ -60,14 +61,9 @@ namespace Recorder
 
         private static void RegisterEvent(TabInfo tabInfo, WebKitBrowser browser)
         {
-            tabInfo.TabButton.OnDragOut += (t) => {
-                t.Remove();
-                var f = new FmTabBase();
-                f.MoveInTab(t);
-                f.StartPosition = FormStartPosition.Manual;
-                f.Location = new Point(MousePosition.X - 30, MousePosition.Y - 30);
-                f.Show();
-                f.CaptureForm();
+            tabInfo.TabButton.OnDragOut += (t) =>
+            {
+                t.MoveToNewForm(MousePosition);
             };
             browser.DocumentCompleted += (o, e) =>
             {
@@ -82,7 +78,14 @@ namespace Recorder
             };
         }
 
-      
+        public bool PointInTabContainer(Point mousePoint)
+        {
+            var p =  pToolBar.PointToClient(mousePoint);
+            if (p.X > 0 && p.X < pToolBar.Width
+                && p.Y > 0 && p.Y < pToolBar.Height)
+                return true;
+            return false;
+        }
 
         protected override void CloseClickedHandler()
         {
@@ -90,7 +93,8 @@ namespace Recorder
             if (this == Default)
             {
                 Hide();
-            }else
+            }
+            else
             {
                 base.CloseClickedHandler();
             }

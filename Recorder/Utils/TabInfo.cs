@@ -1,6 +1,7 @@
 ﻿using Recorder.UserControllers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -67,6 +68,17 @@ namespace Recorder.Utils
             DisposeWebKitBrowser();
             if (OnDisposed != null)
                 OnDisposed();
+        }
+
+        public void MoveToNewForm(Point mousePoint)
+        {
+            Remove();
+            var f = new FmTabBase();
+            f.MoveInTab(this);
+            f.StartPosition = FormStartPosition.Manual;
+            f.Location = new Point(mousePoint.X - 40, mousePoint.Y - 15);
+            f.Show();
+            f.CaptureForm();
         }
 
         public void DisposeWebKitBrowser()
