@@ -33,12 +33,24 @@ namespace Recorder
         {
             var tabInfo = new TabInfo(ucTabContainer1);
             var browser = new BrowserHelper(new BrowserHelperParam(url, tabInfo.TabPage, new RecordAdapter(), true)).Browser;
-            browser.DocumentCompleted += (o, e) =>
-                {
-                    tabInfo.TabButton.UCText = browser.DocumentTitle;
-                };
+            RegisterBrowserEvent(tabInfo, browser);
             tabInfo.TabPage.BackColor = Color.GreenYellow;
             ucTabContainer1.AddTab(tabInfo);
+        }
+
+        private static void RegisterBrowserEvent(TabInfo tabInfo, WebKitBrowser browser)
+        {
+            browser.DocumentCompleted += (o, e) =>
+            {
+                tabInfo.TabButton.UCText = browser.DocumentTitle;
+                tabInfo.TabButton.Tip = browser.DocumentTitle;
+            };
+            browser.NewWindowCreated += (o, e) =>
+            {
+                FmTabBase.Default.AddTab(e.WebKitBrowser);
+                if (!FmTabBase.Default.Visible)
+                    FmTabBase.Default.Show();
+            };
         }
 
         public void AddTab(WebKitBrowser browser)
@@ -49,10 +61,8 @@ namespace Recorder
             {
                 browser.GetScriptManager.ScriptObject = new RecordAdapter();
             };
-            browser.DocumentCompleted += (o, e) =>
-            {
-                tabInfo.TabButton.UCText = browser.DocumentTitle;
-            };
+            RegisterBrowserEvent(tabInfo, browser);
+
             tabInfo.TabPage.Controls.Add(browser);
             ucTabContainer1.AddTab(tabInfo);
         }
