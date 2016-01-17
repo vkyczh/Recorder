@@ -43,6 +43,8 @@ namespace Recorder
             Init(new BrowserHelperParam(path));
         }
 
+        public bool CoverTaskBar { get; set; }
+
         public virtual string Title
         {
             get
@@ -251,5 +253,11 @@ namespace Recorder
         }
 
         #endregion <<< control event
+
+        private void FmBase_Load(object sender, EventArgs e)
+        {
+            if(!CoverTaskBar)
+                MaximizedBounds = Screen.GetWorkingArea(this);
+        }
     }
 }

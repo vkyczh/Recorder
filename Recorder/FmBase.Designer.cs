@@ -295,7 +295,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FmBase";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FmBase";
+            this.Load += new System.EventHandler(this.FmBase_Load);
             this.SizeChanged += new System.EventHandler(this.FmBase_SizeChanged);
             this.pTitltle.ResumeLayout(false);
             this.pContainer.ResumeLayout(false);

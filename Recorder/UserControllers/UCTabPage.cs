@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WebKit;
 
 namespace Recorder.UserControllers
 {
@@ -22,6 +23,15 @@ namespace Recorder.UserControllers
             BringToFront();
         }
 
+        public WebKitBrowser GetWebBrowser()
+        {
+            foreach (var ctr in Controls)
+            {
+                if (ctr is WebKitBrowser)
+                    return ctr as WebKitBrowser;
+            }
+            return null;
+        }
         public void DisSelect()
         {
 

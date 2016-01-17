@@ -12,6 +12,7 @@ namespace Recorder.UserControllers
 {
     public partial class UCTabButton : UCButton
     {
+        public Action<TabInfo> OnDragOut;
         public UCTabButton()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Recorder.UserControllers
             InitializeComponent();
         }
 
-       
+        bool _clicked;
         private bool _isSelcted;
 
         public bool IsSelcted {
@@ -61,17 +62,31 @@ namespace Recorder.UserControllers
 
         protected override void MouseUpHandler()
         {
-            
+            _clicked = false;
         }
 
         protected override void MouseDownHandler()
         {
-            
+            _clicked = true;
         }
 
         protected override void ClickHandler()
         {
             base.ClickHandler();
+        }
+
+        protected override void MouseMoveHandler()
+        {
+            base.MouseMoveHandler();
+            var p = PointToClient(MousePosition);
+            if (_clicked& p.Y > Height || p.Y < 0)
+            {
+                _clicked = false;
+                if (OnDragOut != null)
+                {
+                    OnDragOut(_tabInfo);
+                }
+            }
         }
         public  void SelectTab()
         {

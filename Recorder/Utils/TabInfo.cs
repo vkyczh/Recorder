@@ -11,9 +11,8 @@ namespace Recorder.Utils
     public class TabInfo
     {
         public Action OnDisposed;
-        public TabInfo(UCTabContainer ucTabContainer)
+        public TabInfo()
         {
-            _ucTabContainer = ucTabContainer;
             TabPage = new UCTabPage();
             TabButton = new UCTabButton(this);
         }
@@ -23,6 +22,17 @@ namespace Recorder.Utils
         public UCTabButton TabButton { get; set; }
 
         UCTabContainer _ucTabContainer;
+        public UCTabContainer UCTabContainer
+        {
+            get
+            {
+                return _ucTabContainer;
+            }
+            set
+            {
+                _ucTabContainer = value;
+            }
+        }
 
         /// <summary>
         /// 选中Tab页

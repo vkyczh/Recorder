@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmMain));
             this.pTitle = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pContainer = new System.Windows.Forms.Panel();
             this.pContent = new System.Windows.Forms.Panel();
@@ -40,8 +41,8 @@
             this.pTool = new System.Windows.Forms.Panel();
             this.lbList = new System.Windows.Forms.Label();
             this.lbEdit = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.ucBtnNail = new Recorder.UCButton();
+            this.ucBtnMinimize = new Recorder.UCButton();
             this.ucBtnClose = new Recorder.UCButton();
             this.pTitle.SuspendLayout();
             this.pContainer.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             this.pTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(87)))), ((int)(((byte)(168)))));
             this.pTitle.Controls.Add(this.ucBtnNail);
+            this.pTitle.Controls.Add(this.ucBtnMinimize);
             this.pTitle.Controls.Add(this.ucBtnClose);
             this.pTitle.Controls.Add(this.panel1);
             this.pTitle.Controls.Add(this.lbTitle);
@@ -62,6 +64,15 @@
             this.pTitle.Name = "pTitle";
             this.pTitle.Size = new System.Drawing.Size(325, 32);
             this.pTitle.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Recorder.Properties.Resources.record;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(6, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 25);
+            this.panel1.TabIndex = 8;
             // 
             // lbTitle
             // 
@@ -72,10 +83,11 @@
             this.lbTitle.Location = new System.Drawing.Point(0, 0);
             this.lbTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Padding = new System.Windows.Forms.Padding(32, 0, 0, 0);
             this.lbTitle.Size = new System.Drawing.Size(325, 32);
             this.lbTitle.TabIndex = 0;
-            this.lbTitle.Text = "记录工具";
-            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTitle.Text = "Faster";
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTitle_MouseDown);
             this.lbTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbTitle_MouseUp);
             // 
@@ -182,21 +194,12 @@
             this.lbEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbEdit.Click += new System.EventHandler(this.lbEdit_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Recorder.Properties.Resources.record;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(8, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(25, 25);
-            this.panel1.TabIndex = 8;
-            // 
             // ucBtnNail
             // 
             this.ucBtnNail.BackColor = System.Drawing.Color.Transparent;
             this.ucBtnNail.Dock = System.Windows.Forms.DockStyle.Right;
             this.ucBtnNail.InnerBackgroundImage = global::Recorder.Properties.Resources.nail;
-            this.ucBtnNail.Location = new System.Drawing.Point(261, 0);
+            this.ucBtnNail.Location = new System.Drawing.Point(230, 0);
             this.ucBtnNail.Margin = new System.Windows.Forms.Padding(0);
             this.ucBtnNail.Name = "ucBtnNail";
             this.ucBtnNail.Padding = new System.Windows.Forms.Padding(8);
@@ -206,6 +209,22 @@
             this.ucBtnNail.Tip = "最前";
             this.ucBtnNail.UCText = "";
             this.ucBtnNail.Click += new System.EventHandler(this.ucBtnNail_Click);
+            // 
+            // ucBtnMinimize
+            // 
+            this.ucBtnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.ucBtnMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucBtnMinimize.InnerBackgroundImage = global::Recorder.Properties.Resources.minmize;
+            this.ucBtnMinimize.Location = new System.Drawing.Point(262, 0);
+            this.ucBtnMinimize.Margin = new System.Windows.Forms.Padding(0);
+            this.ucBtnMinimize.Name = "ucBtnMinimize";
+            this.ucBtnMinimize.Padding = new System.Windows.Forms.Padding(8);
+            this.ucBtnMinimize.Size = new System.Drawing.Size(31, 32);
+            this.ucBtnMinimize.TabIndex = 10;
+            this.ucBtnMinimize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ucBtnMinimize.Tip = null;
+            this.ucBtnMinimize.UCText = "";
+            this.ucBtnMinimize.Click += new System.EventHandler(this.ucBtnMinimize_Click);
             // 
             // ucBtnClose
             // 
@@ -261,6 +280,7 @@
         private System.Windows.Forms.Panel panel1;
         private UCButton ucBtnClose;
         private UCButton ucBtnNail;
+        private UCButton ucBtnMinimize;
     }
 }
 

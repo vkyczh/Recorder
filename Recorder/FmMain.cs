@@ -121,6 +121,11 @@ namespace Recorder
             IsTopMost = !IsTopMost;
         }
 
+        private void ucBtnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
 
     }
 }

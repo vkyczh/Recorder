@@ -24,22 +24,51 @@ namespace Recorder
 
         public static FmTabBase Default = new FmTabBase();
 
+        static FmTabBase()
+        {
+            Default.Title = "主工作区";
+        }
+
+        public void CaptureForm()
+        {
+            WinTool.ReleaseCapture();
+            WinTool.Capture(this.Handle);
+
+        }
         private void FmTabBase_Load(object sender, EventArgs e)
         {
-            ucTabContainer1.OnLastTabClosed += () => { Hide(); };
+            ucTabContainer1.OnTabsEmpty += () => { Hide(); };
         }
-     
-        public void AddTab(string url)
+
+        public void MoveInTab(TabInfo tabInfo)
         {
-            var tabInfo = new TabInfo(ucTabContainer1);
-            var browser = new BrowserHelper(new BrowserHelperParam(url, tabInfo.TabPage, new RecordAdapter(), true)).Browser;
-            RegisterBrowserEvent(tabInfo, browser);
-            tabInfo.TabPage.BackColor = Color.GreenYellow;
+            ucTabContainer1.AddTab(tabInfo);
+        }
+        public void AddTab(WebKitBrowser browser)
+        {
+            var tabInfo = new TabInfo();
+            browser.Dock = DockStyle.Fill;
+            browser.Load += (o, e) =>
+            {
+                browser.GetScriptManager.ScriptObject = new RecordAdapter();
+            };
+            RegisterEvent(tabInfo, browser);
+
+            tabInfo.TabPage.Controls.Add(browser);
             ucTabContainer1.AddTab(tabInfo);
         }
 
-        private static void RegisterBrowserEvent(TabInfo tabInfo, WebKitBrowser browser)
+        private static void RegisterEvent(TabInfo tabInfo, WebKitBrowser browser)
         {
+            tabInfo.TabButton.OnDragOut += (t) => {
+                t.Remove();
+                var f = new FmTabBase();
+                f.MoveInTab(t);
+                f.StartPosition = FormStartPosition.Manual;
+                f.Location = new Point(MousePosition.X - 30, MousePosition.Y - 30);
+                f.Show();
+                f.CaptureForm();
+            };
             browser.DocumentCompleted += (o, e) =>
             {
                 tabInfo.TabButton.UCText = browser.DocumentTitle;
@@ -53,24 +82,18 @@ namespace Recorder
             };
         }
 
-        public void AddTab(WebKitBrowser browser)
-        {
-            var tabInfo = new TabInfo(ucTabContainer1);
-            browser.Dock = DockStyle.Fill;
-            browser.Load += (o, e) =>
-            {
-                browser.GetScriptManager.ScriptObject = new RecordAdapter();
-            };
-            RegisterBrowserEvent(tabInfo, browser);
-
-            tabInfo.TabPage.Controls.Add(browser);
-            ucTabContainer1.AddTab(tabInfo);
-        }
+      
 
         protected override void CloseClickedHandler()
         {
             ucTabContainer1.RemoveAndDisposeAll();
-            Hide();
+            if (this == Default)
+            {
+                Hide();
+            }else
+            {
+                base.CloseClickedHandler();
+            }
         }
     }
 }

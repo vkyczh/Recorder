@@ -13,7 +13,7 @@ namespace Recorder.UserControllers
 {
     public partial class UCTabContainer : UserControl
     {
-        public Action OnLastTabClosed;
+        public Action OnTabsEmpty;
         public UCTabContainer()
         {
             InitializeComponent();
@@ -48,6 +48,7 @@ namespace Recorder.UserControllers
 
         public void AddTab(TabInfo tabInfo)
         {
+            tabInfo.UCTabContainer = this; ;
             tabInfo.TabButton.Left = _leftForTabButton;
             _leftForTabButton += tabInfo.TabButton.Width;
             tabInfo.TabButton.Click += (o, e) => { SelectedTabInfo = tabInfo; };
@@ -56,8 +57,7 @@ namespace Recorder.UserControllers
             TabInfoList.Add(tabInfo);
             SelectedTabInfo = tabInfo;
             tabInfo.OnDisposed += () => {
-                if (TabInfoList.Count == 0 && OnLastTabClosed != null)
-                    OnLastTabClosed();
+               
             };
         }
 
@@ -83,7 +83,9 @@ namespace Recorder.UserControllers
                     SelectedTabInfo = TabInfoList.First();
                 }
             }
-            RefreshTabButtonContainer();         
+            RefreshTabButtonContainer();
+            if (TabInfoList.Count == 0 && OnTabsEmpty != null)
+                OnTabsEmpty();
             return tabInfo;
         }
 

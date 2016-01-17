@@ -120,5 +120,20 @@ namespace Recorder
         {
 
         }
+
+        private void lbText_MouseMove(object sender, MouseEventArgs e)
+        {
+            OnMouseMove(e);
+        }
+
+        private void UCButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMoveHandler();
+        }
+
+        protected virtual void MouseMoveHandler()
+        {
+
+        }
     }
 }

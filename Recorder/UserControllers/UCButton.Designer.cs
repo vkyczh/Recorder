@@ -53,6 +53,7 @@
             this.lbText.MouseEnter += new System.EventHandler(this.UCButton_MouseEnter);
             this.lbText.MouseLeave += new System.EventHandler(this.UCButton_MouseLeave);
             this.lbText.MouseHover += new System.EventHandler(this.lbText_MouseHover);
+            this.lbText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbText_MouseMove);
             this.lbText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.UCButton_MouseUp);
             // 
             // pContainer
@@ -81,6 +82,7 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.UCButton_MouseDown);
             this.MouseEnter += new System.EventHandler(this.UCButton_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.UCButton_MouseLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.UCButton_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.UCButton_MouseUp);
             this.pContainer.ResumeLayout(false);
             this.ResumeLayout(false);
