@@ -18,6 +18,7 @@ namespace Recorder
         {
             InitializeComponent();
             InitTitle();
+            _resizeController = new ResizeController(this);
         }
 
         /// <summary>
@@ -91,6 +92,8 @@ namespace Recorder
         /// </summary>
         Timer _timer;
         BrowserHelperParam _browserHelperParam;
+        bool _pLeftMouseDown = false;
+        ResizeController _resizeController;
 
         #region >>> protected
 
@@ -189,6 +192,64 @@ namespace Recorder
         {
             IsTopMost = !IsTopMost;
         }
+
+        private void pResize_MouseMove(object sender, MouseEventArgs e)
+        {
+            _resizeController.Move();
+        }
+
+        private void pBorderLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.BorderLeft);
+        }
+
+
+        private void ReleaseResizeStatusHandle(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.None);
+        }
+
+        private void ReleaseResizeStatusHandle(object sender, EventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.None);
+        }
+
+        private void pTitleRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.TitleRight);
+        }
+
+        private void pTitleLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.TitleLeft);
+        }
+
+        private void pTitleTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.TitleTop);
+        }
+
+        private void pBorderRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.BorderRight);
+        }
+
+        private void pBorderRightBottom_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.BorderRightBottom);
+        }
+
+        private void pBorderBottom_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.BorderBottom);
+        }
+
+        private void pBorderLeftDottom_MouseDown(object sender, MouseEventArgs e)
+        {
+            _resizeController.Set(EMouseDownDownType.BorderLeftBottom);
+        }
+
+     
 
         
 

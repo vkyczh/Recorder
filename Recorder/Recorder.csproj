@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Utils\BrowserHelper.cs" />
     <Compile Include="Utils\BrowserHelperParam.cs" />
+    <Compile Include="Utils\ResizeController.cs" />
     <Compile Include="Utils\WinTool.cs" />
     <Compile Include="Views\FmDetail.cs">
       <SubType>Form</SubType>
