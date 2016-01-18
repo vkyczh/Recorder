@@ -51,7 +51,7 @@ namespace Recorder.UserControllers
             tabInfo.UCTabContainer = this; ;
             tabInfo.TabButton.Left = _leftForTabButton;
             _leftForTabButton += tabInfo.TabButton.Width;
-            tabInfo.TabButton.Click += (o, e) => { SelectedTabInfo = tabInfo; };
+            tabInfo.TabButton.Click += (o, e) => { tabInfo.UCTabContainer.SelectedTabInfo = tabInfo; };
             pTabButtonContainer.Controls.Add(tabInfo.TabButton);
             pTabPageContainer.Controls.Add(tabInfo.TabPage);
             TabInfoList.Add(tabInfo);
