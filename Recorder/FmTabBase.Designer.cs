@@ -43,6 +43,10 @@
             this.pContainer.Controls.SetChildIndex(this.pToolBar, 0);
             this.pContainer.Controls.SetChildIndex(this.pTabBaseContainer, 0);
             // 
+            // lbTitle
+            // 
+            this.lbTitle.Size = new System.Drawing.Size(851, 32);
+            // 
             // pToolBar
             // 
             this.pToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(87)))), ((int)(((byte)(168)))));
@@ -80,6 +84,7 @@
             this.Name = "FmTabBase";
             this.Text = "FmTabBase";
             this.Load += new System.EventHandler(this.FmTabBase_Load);
+            this.Move += new System.EventHandler(this.FmTabBase_Move);
             this.pContainer.ResumeLayout(false);
             this.pTabBaseContainer.ResumeLayout(false);
             this.ResumeLayout(false);

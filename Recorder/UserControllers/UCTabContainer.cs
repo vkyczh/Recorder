@@ -99,6 +99,15 @@ namespace Recorder.UserControllers
             }
         }
 
+        public void MoveAllTabsTo(FmTabBase f)
+        {
+            while (TabInfoList.Count > 0)
+            {
+                var t = TabInfoList[0];
+                t.MoveToForm(f);
+            }
+        }
+
         private void RefreshTabButtonContainer()
         {
             pTabButtonContainer.Controls.Clear();

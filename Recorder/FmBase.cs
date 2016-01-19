@@ -69,7 +69,7 @@ namespace Recorder
             set
             {
                 TopMost = value;
-                ucBtnNail.InnerBackgroundImage = TopMost?Properties.Resources.nailed:Properties.Resources.nail;
+                ucBtnNail.InnerBackgroundImage = TopMost ? Properties.Resources.nailed : Properties.Resources.nail;
             }
         }
 
@@ -118,16 +118,20 @@ namespace Recorder
         }
         private void InitTitle()
         {
-            lbTitle.MouseDown += (o, e) =>
-            {
-                WinTool.ReleaseCapture();
-                WinTool.Capture(Handle);
-            };
+            lbTitle.MouseDown += TitleMouseDownHandler;
 
-            lbTitle.MouseUp += (o, e) =>
-            {
-                WinTool.ReleaseCapture();
-            };
+            lbTitle.MouseUp += TitleMouseUpHandler;
+        }
+
+        protected virtual void TitleMouseUpHandler(object sender,MouseEventArgs e)
+        {
+            WinTool.ReleaseCapture();
+        }
+
+        protected virtual void TitleMouseDownHandler(object sender, EventArgs e)
+        {
+            WinTool.ReleaseCapture();
+            WinTool.Capture(Handle);
         }
 
         private void InitTimer()
@@ -256,8 +260,18 @@ namespace Recorder
 
         private void FmBase_Load(object sender, EventArgs e)
         {
-            if(!CoverTaskBar)
+            if (!CoverTaskBar)
                 MaximizedBounds = Screen.GetWorkingArea(this);
+        }
+
+        private void lbTitle_MouseLeave(object sender, EventArgs e)
+        {
+            lbTitle_MouseLeaveHandler(sender,e);
+        }
+
+        protected virtual void lbTitle_MouseLeaveHandler(object sender, EventArgs e)
+        {
+
         }
     }
 }

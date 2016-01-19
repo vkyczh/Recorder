@@ -30,12 +30,27 @@ namespace Recorder
             Default.Title = "主工作区";
         }
 
+        private bool _isMoving;
+        public bool IsMoving
+        {
+            get
+            {
+                return _isMoving;
+            }
+
+            set
+            {
+                _isMoving = value;
+            }
+        }
+
         public void CaptureForm()
         {
             WinTool.ReleaseCapture();
             WinTool.Capture(this.Handle);
 
         }
+
         private void FmTabBase_Load(object sender, EventArgs e)
         {
             ucTabContainer1.OnTabsEmpty += () => { Hide(); };
@@ -80,7 +95,7 @@ namespace Recorder
 
         public bool PointInTabContainer(Point mousePoint)
         {
-            var p =  pToolBar.PointToClient(mousePoint);
+            var p = pToolBar.PointToClient(mousePoint);
             if (p.X > 0 && p.X < pToolBar.Width
                 && p.Y > 0 && p.Y < pToolBar.Height)
                 return true;
@@ -99,5 +114,30 @@ namespace Recorder
                 base.CloseClickedHandler();
             }
         }
+
+        private void FmTabBase_Move(object sender, EventArgs e)
+        {
+            if (this == Default)
+                return;
+
+            if (!IsMoving)
+                return;
+
+
+            if (Default.PointInTabContainer(MousePosition))
+            {
+                ucTabContainer1.MoveAllTabsTo( Default);
+            }
+        }
+
+        protected override void lbTitle_MouseLeaveHandler(object sender, EventArgs e)
+        {
+            base.lbTitle_MouseLeaveHandler(sender, e);
+            if (IsMoving)
+                IsMoving = false;
+        }
+       
     }
+
+        
 }

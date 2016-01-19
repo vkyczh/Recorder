@@ -123,6 +123,7 @@
             // 
             // lbTitle
             // 
+            this.lbTitle.BackColor = System.Drawing.Color.Transparent;
             this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTitle.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTitle.ForeColor = System.Drawing.Color.Transparent;
@@ -134,6 +135,7 @@
             this.lbTitle.TabIndex = 7;
             this.lbTitle.Text = "标题";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbTitle.MouseLeave += new System.EventHandler(this.lbTitle_MouseLeave);
             // 
             // pContainer
             // 
@@ -310,7 +312,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pTitltle;
-        private System.Windows.Forms.Label lbTitle;
         private UCButton ucBtnClose;
         private UCButton ucBtnSize;
         private UCButton ucBtnMinimize;
@@ -325,5 +326,6 @@
         private System.Windows.Forms.Panel pBorderRightBottom;
         private System.Windows.Forms.Panel pBorderLeftDottom;
         protected System.Windows.Forms.Panel pContainer;
+        protected System.Windows.Forms.Label lbTitle;
     }
 }

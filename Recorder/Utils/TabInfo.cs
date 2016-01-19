@@ -72,13 +72,21 @@ namespace Recorder.Utils
 
         public void MoveToNewForm(Point mousePoint)
         {
-            Remove();
+           // Remove();
             var f = new FmTabBase();
-            f.MoveInTab(this);
+           // f.MoveInTab(this);
+            MoveToForm(f);
             f.StartPosition = FormStartPosition.Manual;
             f.Location = new Point(mousePoint.X - 40, mousePoint.Y - 15);
             f.Show();
+            f.IsMoving = true;
             f.CaptureForm();
+        }
+
+        public void MoveToForm(FmTabBase f)
+        {
+            Remove();
+            f.MoveInTab(this);
         }
 
         public void DisposeWebKitBrowser()
