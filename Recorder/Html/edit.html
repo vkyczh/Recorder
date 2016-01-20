@@ -5,21 +5,15 @@
     <meta charset="utf-8" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/knock.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
     <script>
         Notice = window.external.Alert;
         function save() {
-            var f = document.forms[0];
-           var r = window.external.Save(
-                f.Title.value,
-                f.Project.value,
-                f.Tag.value,
-                f.Description.value,
-                f.DealWith.value,
-                f.Status.value
-                );
-
+            var r = window.external.Save(JSON.stringify(editPage.record));
            if (r)
-               window.external.Alert("新增成功。");
+               editPage.refresh();
            else
                window.external.Alert("操作失败。");
         }
@@ -30,28 +24,28 @@
         <form>
             <div class="input">
                 <label>标题</label>
-                <input type="text" name="Title" />
+                <input type="text"data-bind="value:Title" name="Title" />
             </div>
             <div class="input">
                 <label>项目</label>
-                <input type="text" name="Project" value="无"/>
+                <input type="text" data-bind="value:Project" name="Project" value="无" />
             </div>
             <div class="input">
                 <label>标签</label>
-                <input type="text" name="Tag" />
+                <input type="text" data-bind="value:Tag" name="Tag" />
             </div>
             <div class="input area">
                 <label>描述</label>
-                <textarea name="Description"></textarea>
+                <textarea name="Description" data-bind="value:Description"></textarea>
             </div>
             <div class="input area">
                 <label>处理方式</label>
-                <textarea name="DealWith" ></textarea>
+                <textarea name="DealWith" data-bind="value:DealWith"></textarea>
             </div>
             <div class="input">
                 <label>状态</label>
                 <!--<input type="text" name="Status" />-->
-                <select name="Status">
+                <select name="Status" data-bind="value:Status">
                     <option value="0">待处理</option>
                     <option value="1">已处理</option>
                 </select>

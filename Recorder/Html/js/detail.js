@@ -1,7 +1,7 @@
 ﻿(function () {
     function DetailPage() {
         var me = this;
-
+        
         me.bind= function(json)
         {
             document.title = json.Title;            
@@ -9,12 +9,13 @@
         }
 
         window.onload = function () {
-            var start = window.location.href.indexOf("?");
-            var query = window.location.href.substr(start + 1);
-            var id = query.substr(query.indexOf("=") + 1);
-            var record = window.external.GetRecordById(id);
+            var result = util.getQueryDictionary(window.location.href);
+            var record = window.external.GetRecordById(result["id"]);
+            
             me.bind(JSON.parse(record));
         };
+
+      
     }
   
     window.detailPage = new DetailPage();

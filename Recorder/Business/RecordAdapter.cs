@@ -14,29 +14,29 @@ namespace Recorder.Business
     public class RecordAdapter
     {
         RecordService _recordService = new RecordService();
-        public bool Save(string title, string project, string tag, string description, string dealWith, string status)
+        public bool Save(string recordJson)
         {
-            return _recordService.Add(new Record
-              {
-                  Title = title,
-                  Project = project,
-                  Tag = tag,
-                  Description = description,
-                  DealWith = dealWith,
-                  Status = (RecordStatus)int.Parse(status)
-              }) != null;
+            var r = JsonConvert.DeserializeObject<Record>(recordJson);
+            if (r.Id == Guid.Empty)
+                return _recordService.Add(r) != null;
+            else
+                return _recordService.Update(r) !=null;
         }
 
         public string Read()
         {
-            var list = _recordService.Query(null).OrderByDescending(p=>p.CreateDate);
+            var list = _recordService.Query(null).OrderByDescending(p => p.CreateDate);
             var result = JsonConvert.SerializeObject(list);
             return result;
         }
 
         public string GetRecordById(string id)
         {
-            var record = _recordService.Get(new Guid(id));
+            Record record;
+            if (string.IsNullOrEmpty(id))
+                record = new Record();
+            else
+                record = _recordService.Get(new Guid(id));
             return JsonConvert.SerializeObject(record);
         }
 
