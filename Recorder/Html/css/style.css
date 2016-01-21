@@ -114,7 +114,7 @@ div[class=edit] {
 div .btn{
    position:absolute;
    bottom:0;
-   padding:0 0 0 160px;
+   padding:0 0 0 20px;
 }
 
 .input.area label{

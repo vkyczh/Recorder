@@ -71,14 +71,19 @@ namespace Recorder
         {
             _editBrowserHelper = new BrowserHelper("html/edit.html", pEdit, _recordAdapter);
             _listBrowserHelper = new BrowserHelper("html/list.html", pList, _recordAdapter);
+            _recordAdapter.ListBrowser = _listBrowserHelper.Browser;
+            _recordAdapter.EditBrowser = _editBrowserHelper.Browser;
             _listBrowserHelper.Browser.NewWindowCreated += Browser_NewWindowCreated;
+            FmTabBase.WebKitBrowser = _listBrowserHelper.Browser;
         }
 
         private void Browser_NewWindowCreated(object sender, NewWindowCreatedEventArgs e)
         {
             FmTabBase.Default.AddTab(e.WebKitBrowser);
             if (!FmTabBase.Default.Visible)
+            {
                 FmTabBase.Default.Show();
+            }
         }
 
     

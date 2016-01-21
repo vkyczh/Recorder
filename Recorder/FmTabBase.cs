@@ -24,6 +24,7 @@ namespace Recorder
 
         public static FmTabBase Default = new FmTabBase();
         public static List<FmTabBase> FmTabBaseList = new List<FmTabBase>();
+        public static WebKitBrowser WebKitBrowser { get; set; }
 
         static FmTabBase()
         {
@@ -66,7 +67,8 @@ namespace Recorder
             browser.Dock = DockStyle.Fill;
             browser.Load += (o, e) =>
             {
-                browser.GetScriptManager.ScriptObject = new RecordAdapter();
+
+                browser.GetScriptManager.ScriptObject = new RecordAdapter() { ListBrowser = WebKitBrowser };
             };
             RegisterEvent(tabInfo, browser);
 

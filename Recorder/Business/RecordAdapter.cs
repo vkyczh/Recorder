@@ -8,19 +8,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WebKit;
 
 namespace Recorder.Business
 {
     public class RecordAdapter
     {
         RecordService _recordService = new RecordService();
+        public WebKitBrowser ListBrowser { get; set; }
+        public WebKitBrowser EditBrowser { get; set; }
         public bool Save(string recordJson)
         {
             var r = JsonConvert.DeserializeObject<Record>(recordJson);
+            bool result = false;
             if (r.Id == Guid.Empty)
-                return _recordService.Add(r) != null;
+            {
+                result =  _recordService.Add(r) != null;
+            }
             else
-                return _recordService.Update(r) !=null;
+                result = _recordService.Update(r) != null;
+
+            if(result)
+                ListBrowser.GetScriptManager.EvaluateScript(string.Format("listPage.vm.dataRefreshed({0})", JsonConvert.SerializeObject(r)));
+            return result;
         }
 
         public string Read()
@@ -49,6 +59,12 @@ namespace Recorder.Business
         {
             var fmDetail = new FmDetail(json);
             fmDetail.Show();
+        }
+
+        public bool Delete(string id)
+        {
+            var r= _recordService.Delete(new Guid(id));
+            return r;
         }
     }
 }

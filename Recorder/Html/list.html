@@ -11,6 +11,7 @@
 </head>
 <body>
     <div data-bind="foreach:list">
+        <a href="javascript:void(0);" data-bind="click:$root.delete">删除</a>
         <a class="block" data-bind="attr:{href:'detail.html?id='+Id}" target="_blank">
             <!--<a class="block" data-bind="event:{dblclick:$root.detail}">-->
             <div data-bind="text:Title" class="title"></div>

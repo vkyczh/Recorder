@@ -10,13 +10,7 @@
     <script type="text/javascript" src="js/edit.js"></script>
     <script>
         Notice = window.external.Alert;
-        function save() {
-            var r = window.external.Save(JSON.stringify(editPage.record));
-           if (r)
-               editPage.refresh();
-           else
-               window.external.Alert("操作失败。");
-        }
+       
     </script>
 </head>
 <body>
@@ -24,34 +18,34 @@
         <form>
             <div class="input">
                 <label>标题</label>
-                <input type="text"data-bind="value:Title" name="Title" />
+                <input type="text"data-bind="value:data.Title" name="Title" />
             </div>
             <div class="input">
                 <label>项目</label>
-                <input type="text" data-bind="value:Project" name="Project" value="无" />
+                <input type="text" data-bind="value:data.Project" name="Project" value="无" />
             </div>
             <div class="input">
                 <label>标签</label>
-                <input type="text" data-bind="value:Tag" name="Tag" />
+                <input type="text" data-bind="value:data.Tag" name="Tag" />
             </div>
             <div class="input area">
                 <label>描述</label>
-                <textarea name="Description" data-bind="value:Description"></textarea>
+                <textarea name="Description" data-bind="value:data.Description"></textarea>
             </div>
             <div class="input area">
                 <label>处理方式</label>
-                <textarea name="DealWith" data-bind="value:DealWith"></textarea>
+                <textarea name="DealWith" data-bind="value:data.DealWith"></textarea>
             </div>
             <div class="input">
                 <label>状态</label>
                 <!--<input type="text" name="Status" />-->
-                <select name="Status" data-bind="value:Status">
+                <select name="Status" data-bind="value:data.Status">
                     <option value="0">待处理</option>
                     <option value="1">已处理</option>
                 </select>
             </div>
             <div class="input btn">
-                <input type="button" value="保存" onclick="save();"/>
+                <input type="button" value="保存" data-bind="click:$root.save"/>
             </div>
         </form>
     </div>
