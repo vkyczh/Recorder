@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
 using DataModel.Entities;
 using DataModel.Enums;
+using DataModel.Filters;
 using Newtonsoft.Json;
 using Recorder.Views;
 using System;
@@ -23,12 +24,12 @@ namespace Recorder.Business
             bool result = false;
             if (r.Id == Guid.Empty)
             {
-                result =  _recordService.Add(r) != null;
+                result = _recordService.Add(r) != null;
             }
             else
                 result = _recordService.Update(r) != null;
 
-            if(result)
+            if (result)
                 ListBrowser.GetScriptManager.EvaluateScript(string.Format("listPage.vm.dataRefreshed({0})", JsonConvert.SerializeObject(r)));
             return result;
         }
@@ -36,6 +37,13 @@ namespace Recorder.Business
         public string Read()
         {
             var list = _recordService.Query(null).OrderByDescending(p => p.CreateDate);
+            var result = JsonConvert.SerializeObject(list);
+            return result;
+        }
+
+        public string Search(string title,string tag)
+        {
+            var list = _recordService.Query(new RecordFilter() {  Tag = tag, Title = title }).OrderByDescending(p => p.CreateDate);
             var result = JsonConvert.SerializeObject(list);
             return result;
         }
@@ -63,7 +71,7 @@ namespace Recorder.Business
 
         public bool Delete(string id)
         {
-            var r= _recordService.Delete(new Guid(id));
+            var r = _recordService.Delete(new Guid(id));
             return r;
         }
     }

@@ -10,22 +10,40 @@
     <script type="text/javascript" src="js/detail.js"></script>
 </head>
 <body>
-    <div>
-        <a data-bind="attr:{href:'edit.html?from=detail&id='+Id}">编辑</a>
+    <div class="tool-bar">
+        <a class="a-btn" data-bind="attr:{href:'edit.html?from=detail&id='+Id}">编辑</a>
     </div>
     <div class="detail">
-        <label>标题</label>
-        <p data-bind="text:Title"></p>
-        <label>项目</label>
-        <p data-bind="text:Project"></p>
-        <label>标签</label>
-        <p data-bind="text:Tag"></p>
-        <label>描述</label>
-        <p data-bind="text:Description"></p>
-        <label>处理</label>
-        <p data-bind="text:DealWith"></p>
-        <label>状态</label>
-        <p data-bind="text:Status"></p>
+        <div>
+            <label>标题</label>
+            <div data-bind="text:Title"></div>
+        </div>
+        
+        <div>
+            <label>项目</label>
+            <div data-bind="text:Project"></div>
+        </div>
+        
+        <div>
+            <label>标签</label>
+            <div data-bind="text:Tag"></div>
+        </div>
+        
+        <div>
+            <label>描述</label>
+            <div data-bind="text:Description"></div>
+        </div>
+        
+        <div>
+            <label>处理</label>
+            <div data-bind="text:DealWith"></div>
+        </div>
+        
+        <div>
+            <label>状态</label>
+            <div data-bind="text:Status===0?'未处理':'已处理'"></div>
+        </div>
+        
     </div>
 </body>
 </html>

@@ -10,15 +10,27 @@
 
 </head>
 <body>
+    <div class="list-tool-bar">
+        <div>
+            <label>标题：</label>  <input type="text" name="Title" data-bind="value:Title" />
+        </div>
+        <div>
+            <label>标签：</label>  <input type="text" name="Tag" data-bind="value:Tag" />
+            <input type="button" class="btn-btn" value="搜索" data-bind="click:search" />
+        </div>
+        
+    </div>
     <div data-bind="foreach:list">
-        <a href="javascript:void(0);" data-bind="click:$root.delete">删除</a>
-        <a class="block" data-bind="attr:{href:'detail.html?id='+Id}" target="_blank">
-            <!--<a class="block" data-bind="event:{dblclick:$root.detail}">-->
-            <div data-bind="text:Title" class="title"></div>
-            <div data-bind="text:Project" class="project"></div>
-            <div data-bind="text:Description" class="description"></div>
-            <div data-bind="text: $root.formatDate(CreateDate)" class="createDate"></div>
-        </a>
+        <div class="item">
+            <a class="a-btn" href="javascript:void(0);" data-bind="click:$root.delete">删除</a>
+            <a class="block" data-bind="attr:{href:'detail.html?id='+Id}" target="_blank">
+                <!--<a class="block" data-bind="event:{dblclick:$root.detail}">-->
+                <div data-bind="text:Title" class="title"></div>
+                <div data-bind="text:Project" class="project"></div>
+                <div data-bind="text:Description" class="description"></div>
+                <div data-bind="text: $root.formatDate(CreateDate)" class="createDate"></div>
+            </a>
+        </div>
     </div>
 </body>
 </html>

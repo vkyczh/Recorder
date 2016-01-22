@@ -1,8 +1,8 @@
-﻿html,body {
-    height:100%;
-    margin:0;
-    padding:5px 0 0 0;
-    box-sizing:border-box;
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 5px 0 0 0;
+    box-sizing: border-box;
 }
 
 .block {
@@ -11,23 +11,22 @@
     -webkit-user-select: none;
     position: relative;
     padding: 10px 0 25px 5px;
-    box-sizing:border-box;
-    cursor:pointer;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 a {
-    text-decoration:none;
-    color:black;
-    display:block;
+    text-decoration: none;
+    color: black;
+    display: block;
 }
 
-a:hover{
+    a:hover {
+    }
 
-}
-
-a:visited{
-    color:black;
-}
+    a:visited {
+        color: black;
+    }
 
 .title {
     font-weight: 400;
@@ -35,7 +34,7 @@ a:visited{
 }
 
 .project {
-    padding:10px;
+    padding: 10px;
     position: absolute;
     right: 3px;
     top: 0;
@@ -74,9 +73,9 @@ a:visited{
 }
 
 .input {
-    padding:10px 15px 5px 15px;
-    width:100%;
-    box-sizing:border-box;
+    padding: 10px 15px 5px 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
     .input input[type=button] {
@@ -89,7 +88,8 @@ a:visited{
         align-self: center;
         color: #3657A8;
     }
-    .input select{
+
+    .input select {
         width: 80px;
         height: 25px;
         text-align: center;
@@ -101,34 +101,73 @@ a:visited{
     }
 
 div[class=edit] {
-    height:100%;
-    position:relative;
+    height: 100%;
+    position: relative;
 }
 
-.edit form{
-    height:100%;
-    width:100%;
-    margin-left:auto;
-    margin-right:auto;
-}
-div .btn{
-   position:absolute;
-   bottom:0;
-   padding:0 0 0 20px;
+.edit form {
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.input.area label{
+div .btn {
+    position: absolute;
+    bottom: 0;
+    padding: 0 0 0 20px;
+}
+
+.input.area label {
     display: block;
     background: lightblue;
     width: 100%;
 }
 
-.area textarea{
-    width:100%;
-    min-height:50px;
-    box-sizing:border-box;
+.area textarea {
+    width: 100%;
+    min-height: 50px;
+    box-sizing: border-box;
 }
 
-.detail label{
-    background-color:lightblue;
+.detail label {
+    color: #10579f;
+}
+
+.a-btn {
+    color: #3657A8;
+}
+
+.tool-bar {
+    text-align: right;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px black;
+}
+
+.detail > div {
+    margin: 10px;
+    background-color: #d5f7dd;
+    padding: 5px;
+    border-radius: 5px;
+    min-height: 40px;
+}
+
+    .detail > div > div {
+        padding-left: 20px;
+    }
+
+.list-tool-bar {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px black;
+}
+
+.btn-btn {
+    margin:2px;
+    bottom: 0;
+    height: 25px;
+    width:60px;
+    font-size:14px;
+    color:#10579f;
 }

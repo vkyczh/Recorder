@@ -6,9 +6,13 @@
         me.bind = bind;
         function ViewModel(list) {
             var vm = this;
+            vm.Title = ko.observable("");
+            vm.Tag = ko.observable("");
+            vm.search = function () {
+                var result = JSON.parse(external.Search(vm.Title(),vm.Tag()));
+                vm.list(result);
+            }
             vm.dataRefreshed = function (data) {
-
-
                 window.location.reload();
             };
             vm.list = ko.observableArray(list);
