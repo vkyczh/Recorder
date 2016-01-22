@@ -75,8 +75,8 @@ namespace DAL.Repositories
                 }
                 if (!string.IsNullOrWhiteSpace(filter.DealWith))
                 {
-                    cmdText += "and DealWith like '%@DealWith%' ";
-                    parameters.Push(new SQLiteParameter("@DealWith", filter.DealWith));
+                    cmdText += "and DealWith like @DealWith ";
+                    parameters.Push(new SQLiteParameter("@DealWith",string.Format("%{0}%",filter.DealWith)));
                 }
                 if (filter.EndEditDate != null)
                 {
@@ -85,8 +85,8 @@ namespace DAL.Repositories
                 }
                 if (!string.IsNullOrWhiteSpace(filter.Project))
                 {
-                    cmdText += "and project like '%@Project%' ";
-                    parameters.Push(new SQLiteParameter("@Project", filter.DealWith));
+                    cmdText += "and project like @Project ";
+                    parameters.Push(new SQLiteParameter("@Project", string.Format("%{0}%", filter.Project)));
                 }
                 if (filter.Status != null)
                 {
@@ -95,13 +95,13 @@ namespace DAL.Repositories
                 }
                 if (!string.IsNullOrWhiteSpace(filter.Tag))
                 {
-                    cmdText += "and tag like '%@Tag%' ";
-                    parameters.Push(new SQLiteParameter("@Tag", filter.Tag));
+                    cmdText += "and tag like @Tag ";
+                    parameters.Push(new SQLiteParameter("@Tag", string.Format("%{0}%", filter.Tag)));
                 }
                 if (!string.IsNullOrWhiteSpace(filter.Title))
                 {
-                    cmdText += "and title like '%@Title%' ";
-                    parameters.Push(new SQLiteParameter("@Title", filter.Title));
+                    cmdText += "and title like @Title ";
+                    parameters.Push(new SQLiteParameter("@Title", string.Format("%{0}%",filter.Title)));
                 }
             }
             var dt = DbContext.ExecuteQuery(cmdText, parameters.ToArray());
